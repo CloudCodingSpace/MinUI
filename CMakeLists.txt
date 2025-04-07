@@ -23,11 +23,13 @@ endif()
 
 add_subdirectory(libs/glfw)
 add_subdirectory(libs/glad)
+add_subdirectory(libs/slog) 
+add_subdirectory(libs/stb) 
 
 file(GLOB_RECURSE SRCS CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/MinUI/*.c")
 
 add_library(${PROJECT_NAME} ${SRCS})
-target_link_libraries(${PROJECT_NAME} PUBLIC glfw glad OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} PUBLIC glfw glad OpenGL::GL slog stb)
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/MinUI")
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/libs/linmath")
 
