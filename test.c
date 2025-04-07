@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include <mui/mui.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include <mui/MinUI.h>
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -35,6 +37,9 @@ int main(int argc, const char** argv) {
         return -1;
     }
 
+    MUIContext* context = (MUIContext*)malloc(mui_sizeofcontext());
+    memset(context, 0, mui_sizeofcontext());
+    mui_setctx(context);
     mui_init(window);
 
     glfwShowWindow(window);
@@ -54,5 +59,6 @@ int main(int argc, const char** argv) {
 
     mui_deinit();
     glfwTerminate();
+    free(context);
     return 0;
 }
